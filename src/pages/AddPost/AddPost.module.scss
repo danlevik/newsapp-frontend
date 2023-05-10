@@ -1,0 +1,30 @@
+.root {
+  padding: 30px;
+}
+
+.title {
+  input {
+    font-size: 64px;
+    font-weight: 900;
+  }
+
+  div {
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+}
+
+.image {
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  margin-top: 10px;
+
+  button {
+    margin-right: 40px;
+  }
+}

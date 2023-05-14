@@ -11,10 +11,10 @@ import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import { selectIsAuth } from "../../redux/slices/auth";
 import axios from "../../axios";
-import styles from "./AddPost.module.scss";
+import styles from "./ArticleEditor.module.scss";
 import { fetchTags } from "../../redux/slices/tags";
 
-export const AddPost = () => {
+export const ArticleEditor = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -147,7 +147,7 @@ export const AddPost = () => {
           </Button>
           <img
             className={styles.image}
-            src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
+            src={`${"http://localhost:4444"}${imageUrl}`}
             alt="Uploaded"
           />
         </>

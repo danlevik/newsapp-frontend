@@ -4,14 +4,14 @@ import Tab from "@mui/material/Tab";
 import Grid from "@mui/material/Grid";
 import { TextField } from "@mui/material";
 
-import { Post } from "../components/Post";
+import { Article } from "../components/Article/Article";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchArticles } from "../redux/slices/articles";
 import { fetchTags } from "../redux/slices/tags";
 import { fetchComments } from "../redux/slices/comments";
 
-export const Home = () => {
+export const MainPage = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data);
   const { articles } = useSelector((state) => state.articles);
@@ -71,13 +71,15 @@ export const Home = () => {
           {(isArticlesLoading ? [...Array(1)] : articles.items).map(
             (obj, index) =>
               isArticlesLoading ? (
-                <Post key={index} isLoading={true} />
+                <Article key={index} isLoading={true} />
               ) : (
-                <Post
+                <Article
                   id={obj._id}
                   title={obj.title}
                   imageUrl={
-                    obj.imageUrl ? `${process.env.REACT_APP_API_URL}${obj.imageUrl}` : ""
+                    obj.imageUrl
+                      ? `${"http://localhost:4444"}${obj.imageUrl}`
+                      : ""
                   }
                   user={obj.user}
                   tag={obj.tag.tagname}

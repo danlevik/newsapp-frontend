@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Post } from "../components/Post";
+import { Article } from "../components/Article/Article";
 import { AddComment } from "../components/AddComment/AddComment";
-import { CommentsBlock } from "../components/CommentsBlock";
+import { CommentsBlock } from "../components/CommentsSection";
 import { useParams } from "react-router-dom";
 import axios from "../axios";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
@@ -10,7 +10,7 @@ import { fetchArticleComments } from "../redux/slices/articles";
 import { selectIsAuth } from "../redux/slices/auth";
 import { useDispatch, useSelector } from "react-redux";
 
-export const FullPost = () => {
+export const ArticlePage = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const commentData = useSelector((state) => state.articles.comments);
@@ -42,18 +42,21 @@ export const FullPost = () => {
 
   if (isLoadingArticle || isLoadingComments) {
     return (
-      <Post isLoading={isLoadingArticle || isLoadingComments} isFullPost></Post>
+      <Article
+        isLoading={isLoadingArticle || isLoadingComments}
+        isFullPost
+      ></Article>
     );
   }
 
   return (
     <>
-      <Post
+      <Article
         id={articleData._id}
         title={articleData.title}
         imageUrl={
           articleData.imageUrl
-            ? `${process.env.REACT_APP_API_URL}${articleData.imageUrl}`
+            ? `${"http://localhost:4444"}${articleData.imageUrl}`
             : ""
         }
         user={articleData.user}
@@ -63,7 +66,7 @@ export const FullPost = () => {
         isFullPost
       >
         <ReactMarkdown children={articleData.text} />
-      </Post>
+      </Article>
       <CommentsBlock items={commentData.items} isLoading={false}>
         {isAuth ? <AddComment articleId={id} /> : <></>}
       </CommentsBlock>

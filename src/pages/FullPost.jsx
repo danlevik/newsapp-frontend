@@ -53,7 +53,7 @@ export const FullPost = () => {
         title={articleData.title}
         imageUrl={
           articleData.imageUrl
-            ? `http://localhost:4444${articleData.imageUrl}`
+            ? `${process.env.REACT_APP_API_URL}${articleData.imageUrl}`
             : ""
         }
         user={articleData.user}

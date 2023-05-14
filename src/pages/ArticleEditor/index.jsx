@@ -128,7 +128,7 @@ export const ArticleEditor = () => {
         variant="outlined"
         size="large"
       >
-        Загрузить превью
+        Загрузить изображение
       </Button>
       <input
         ref={inputFileRef}
@@ -147,7 +147,7 @@ export const ArticleEditor = () => {
           </Button>
           <img
             className={styles.image}
-            src={`${"http://localhost:4444"}${imageUrl}`}
+            src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
             alt="Uploaded"
           />
         </>

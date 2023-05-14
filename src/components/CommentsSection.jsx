@@ -6,7 +6,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 
-export const CommentsBlock = ({ items, children, isLoading = true }) => {
+export const CommentsSection = ({ items, children, isLoading = true }) => {
   return (
     <>
       <List>

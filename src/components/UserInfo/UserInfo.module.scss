@@ -6,6 +6,9 @@
 .userName {
   font-weight: 500;
   font-size: 18px;
+  &Card {
+    font-size: 12px;
+  }
 }
 
 .userDetails {
@@ -16,4 +19,7 @@
 .additional {
   font-size: 14px;
   opacity: 0.7;
+  &Card {
+    font-size: 10px;
+  }
 }

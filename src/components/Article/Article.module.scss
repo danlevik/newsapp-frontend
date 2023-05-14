@@ -22,6 +22,10 @@ $green: #3c8843;
   width: 100%;
   height: 200px;
   object-fit: cover;
+
+  &Card {
+    height: 150px;
+  }
 }
 
 .wrapper {
@@ -38,13 +42,13 @@ $green: #3c8843;
 }
 
 .indention {
-  padding-left: 40px;
+  padding-left: 10px;
 }
 
 .title {
   font-size: 42px;
   margin: 0px 0px 10px 0px;
-  border-bottom: #00000041 solid;
+  border-bottom: #00000054 solid;
 
   a {
     text-decoration: none;
@@ -53,6 +57,10 @@ $green: #3c8843;
     &:hover {
       color: $green;
     }
+  }
+
+  &Card {
+    font-size: 24px;
   }
 }
 

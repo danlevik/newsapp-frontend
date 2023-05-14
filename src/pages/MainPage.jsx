@@ -44,7 +44,7 @@ export const MainPage = () => {
   return (
     <>
       <TextField
-        style={{ marginBottom: 15 }}
+        style={({ marginBottom: 15 }, { width: 500 })}
         id="search"
         label="Поиск"
         variant="filled"
@@ -67,34 +67,68 @@ export const MainPage = () => {
         )}
       </Tabs>
       <Grid container spacing={4}>
-        <Grid xs={12} item>
-          {(isArticlesLoading ? [...Array(1)] : articles.items).map(
-            (obj, index) =>
-              isArticlesLoading ? (
-                <Article key={index} isLoading={true} />
-              ) : (
-                <Article
-                  id={obj._id}
-                  title={obj.title}
-                  imageUrl={
-                    obj.imageUrl
-                      ? `${"http://localhost:4444"}${obj.imageUrl}`
-                      : ""
-                  }
-                  user={obj.user}
-                  tag={obj.tag.tagname}
-                  createdAt={obj.createdAt}
-                  viewsCount={obj.viewsCount}
-                  commentsCount={
-                    isCommentsLoading
-                      ? 999
-                      : comments.items.filter(
-                          (comment) => comment.article === obj._id
-                        ).length
-                  }
-                  isEditable={userData?._id === obj.user._id}
-                />
-              )
+        <Grid xs={6} item>
+          {(isArticlesLoading
+            ? [...Array(1)]
+            : articles.items.filter((obj, index) => index % 2 == 0)
+          ).map((obj, index) =>
+            isArticlesLoading ? (
+              <Article key={index} isLoading={true} />
+            ) : (
+              <Article
+                id={obj._id}
+                title={obj.title}
+                imageUrl={
+                  obj.imageUrl
+                    ? `${process.env.REACT_APP_API_URL}${obj.imageUrl}`
+                    : ""
+                }
+                user={obj.user}
+                tag={obj.tag.tagname}
+                createdAt={obj.createdAt}
+                viewsCount={obj.viewsCount}
+                commentsCount={
+                  isCommentsLoading
+                    ? 999
+                    : comments.items.filter(
+                        (comment) => comment.article === obj._id
+                      ).length
+                }
+                isEditable={userData?._id === obj.user._id}
+              />
+            )
+          )}
+        </Grid>
+        <Grid xs={6} item>
+          {(isArticlesLoading
+            ? [...Array(1)]
+            : articles.items.filter((obj, index) => index % 2 == 1)
+          ).map((obj, index) =>
+            isArticlesLoading ? (
+              <Article key={index} isLoading={true} />
+            ) : (
+              <Article
+                id={obj._id}
+                title={obj.title}
+                imageUrl={
+                  obj.imageUrl
+                    ? `${process.env.REACT_APP_API_URL}${obj.imageUrl}`
+                    : ""
+                }
+                user={obj.user}
+                tag={obj.tag.tagname}
+                createdAt={obj.createdAt}
+                viewsCount={obj.viewsCount}
+                commentsCount={
+                  isCommentsLoading
+                    ? 999
+                    : comments.items.filter(
+                        (comment) => comment.article === obj._id
+                      ).length
+                }
+                isEditable={userData?._id === obj.user._id}
+              />
+            )
           )}
         </Grid>
       </Grid>

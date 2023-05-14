@@ -2,7 +2,7 @@ import React from "react";
 
 import { Article } from "../components/Article/Article";
 import { AddComment } from "../components/AddComment/AddComment";
-import { CommentsBlock } from "../components/CommentsSection";
+import { CommentsSection } from "../components/CommentsSection";
 import { useParams } from "react-router-dom";
 import axios from "../axios";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
@@ -44,7 +44,7 @@ export const ArticlePage = () => {
     return (
       <Article
         isLoading={isLoadingArticle || isLoadingComments}
-        isFullPost
+        isFullArticle
       ></Article>
     );
   }
@@ -56,20 +56,20 @@ export const ArticlePage = () => {
         title={articleData.title}
         imageUrl={
           articleData.imageUrl
-            ? `${"http://localhost:4444"}${articleData.imageUrl}`
+            ? `${process.env.REACT_APP_API_URL}${articleData.imageUrl}`
             : ""
         }
         user={articleData.user}
         createdAt={articleData.createdAt}
         viewsCount={articleData.viewsCount}
         commentsCount={commentData.items.length}
-        isFullPost
+        isFullArticle
       >
         <ReactMarkdown children={articleData.text} />
       </Article>
-      <CommentsBlock items={commentData.items} isLoading={false}>
+      <CommentsSection items={commentData.items} isLoading={false}>
         {isAuth ? <AddComment articleId={id} /> : <></>}
-      </CommentsBlock>
+      </CommentsSection>
     </>
   );
 };
